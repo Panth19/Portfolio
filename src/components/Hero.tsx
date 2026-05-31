@@ -85,9 +85,7 @@ export default function Hero() {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/15 bg-slate-900/80 px-5 py-2 text-sm font-medium text-white backdrop-blur-md">
-            📍 {profile.location}
-          </div>
+          
         </motion.div>
       </div>
 
