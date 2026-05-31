@@ -70,11 +70,9 @@ export default function Projects() {
         {!loading && !error && (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {repos.map((repo, i) => (
-              <motion.a
+              // Changed from motion.a to motion.div
+              <motion.div
                 key={repo.id}
-                href={repo.html_url}
-                target="_blank"
-                rel="noreferrer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -106,14 +104,18 @@ export default function Projects() {
                 </div>
 
                 <h3 className="mb-2 break-words text-lg font-semibold text-white group-hover:text-violet-300">
-                  {repo.name}
+                  {/* Added an anchor tag here to link to the GitHub code. 
+                      The 'after:absolute after:inset-0' makes the whole card clickable */}
+                  <a href={repo.html_url} target="_blank" rel="noreferrer" className="after:absolute after:inset-0">
+                    {repo.name}
+                  </a>
                 </h3>
                 <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-400">
                   {repo.description || "No description provided."}
                 </p>
 
                 {repo.topics?.length > 0 && (
-                  <div className="mb-4 flex flex-wrap gap-1.5">
+                  <div className="mb-4 flex flex-wrap gap-1.5 relative z-10">
                     {repo.topics.slice(0, 3).map((t) => (
                       <span
                         key={t}
@@ -143,15 +145,23 @@ export default function Projects() {
                   <span className="flex items-center gap-1">
                     ⑂ {repo.forks_count}
                   </span>
+                  
+                  {/* Changed from span to a clickable anchor tag */}
                   {repo.homepage && (
-                    <span className="ml-auto text-cyan-400">Live ↗</span>
+                    <a 
+                      href={repo.homepage} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="ml-auto text-cyan-400 relative z-10 hover:text-cyan-300 hover:underline"
+                    >
+                      Live ↗
+                    </a>
                   )}
                 </div>
-              </motion.a>
+              </motion.div>
             ))}
           </div>
         )}
-
         {!loading && !error && repos.length === 0 && (
           <p className="text-center text-slate-400">No public repositories found.</p>
         )}
