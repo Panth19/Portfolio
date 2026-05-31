@@ -35,7 +35,7 @@ It builds into a single `dist/index.html` file, so it's perfect for **free** sta
 
 The form uses **Formspree** (free tier: 50 submissions/month).
 
-1. Go to https://formspree.io and sign up with **panthcb@gmail.com**.
+1. Go to https://formspree.io and sign up with email.
 2. Create a new form. You'll get a form ID like `xanybkqr`.
 3. Open `src/components/Contact.tsx` and replace the `FORMSPREE_ID` value with yours.
 4. Rebuild & redeploy. Submissions arrive straight to your email.
