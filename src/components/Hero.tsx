@@ -80,7 +80,7 @@ export default function Hero() {
           <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-gradient-to-tr from-violet-600/40 to-cyan-500/40 blur-3xl" />
           <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white/10 shadow-2xl shadow-violet-900/50 sm:h-80 sm:w-80">
             <img
-              src="./Photo.png"
+              src="./panth.jpg"
               alt={profile.name}
               className="h-full w-full object-cover"
             />
