@@ -88,7 +88,7 @@ export default function Contact() {
               value={profile.github}
               href={profile.githubUrl}
             />
-            <ContactCard icon="📍" label="Location" value={profile.location} />
+          
           </motion.div>
 
           <motion.form
