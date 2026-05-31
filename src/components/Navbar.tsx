@@ -36,7 +36,7 @@ export default function Navbar() {
           onClick={() => go("home")}
           className="text-lg font-bold tracking-tight text-white"
         >
-          Panth<span className="text-violet-400">.</span>
+          <span className="text-violet-400">.</span>
         </button>
 
         <div className="hidden items-center gap-1 md:flex">
