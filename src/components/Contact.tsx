@@ -70,12 +70,7 @@ export default function Contact() {
               value={profile.email}
               href={`mailto:${profile.email}`}
             />
-            <ContactCard
-              icon="📞"
-              label="Phone"
-              value={profile.phone}
-              href={`tel:${profile.phone.replace(/\s/g, "")}`}
-            />
+            
             <ContactCard
               icon="💼"
               label="LinkedIn"
