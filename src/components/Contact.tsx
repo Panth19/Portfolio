@@ -5,7 +5,7 @@ import { profile } from "../data";
 // Free contact form via Formspree. Replace "xanybkqr" with your own
 // Formspree form ID after signing up at https://formspree.io (free tier).
 // Until then, the form falls back to opening the user's email client.
-const FORMSPREE_ID = "https://formspree.io/f/xbdbeazw";
+const FORMSPREE_ID = "xbdbeazw";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
