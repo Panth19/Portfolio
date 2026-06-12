@@ -9,9 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   RAWBLOCK DESIGN SYSTEM — brutalist, zero radius, no shadows
-   ============================================================ */
 :root{
   --black:#000000;
   --white:#FFFFFF;
@@ -50,7 +47,6 @@ a:hover{background:var(--blue);color:var(--white);}
 
 .wrap{max-width:1180px;margin:0 auto;padding:0 var(--sp-4);}
 
-/* ---------- NAV ---------- */
 nav{
   position:sticky;top:0;z-index:100;
   background:var(--white);
@@ -80,7 +76,6 @@ nav{
 }
 .nav-links a:hover{background:var(--black);color:var(--white);}
 
-/* ---------- HERO ---------- */
 .hero{
   border-bottom:5px solid var(--black);
   padding:var(--sp-7) 0 var(--sp-6);
@@ -91,21 +86,38 @@ nav{
 }
 .hero h1{font-size:clamp(48px,9vw,110px);margin-bottom:var(--sp-3);}
 
-/* ---------- PROFILE PHOTO ---------- */
+/* ============================================================
+   PHOTO FRAME — colorful treatment
+   Border: 5px electric blue top/left, 5px orange bottom/right
+   = directional brutalist "shadow" in color instead of black.
+   The img renders in full color (no filter).
+   On hover the accent border inverts (bottom/right → blue).
+   Caption bar: vivid electric blue bg with white mono text.
+   ============================================================ */
 .photo-frame{
-  border:5px solid var(--black);
+  border-top:5px solid #0000FF;
+  border-left:5px solid #0000FF;
+  border-right:5px solid #FF6B00;
+  border-bottom:5px solid #FF6B00;
   background:var(--sunken);
   width:300px;height:340px;
   position:relative;
   overflow:hidden;
+  transition: border-color 0.15s ease;
+}
+.photo-frame:hover{
+  border-top:5px solid #FF6B00;
+  border-left:5px solid #FF6B00;
+  border-right:5px solid #0000FF;
+  border-bottom:5px solid #0000FF;
 }
 .photo-frame img{
   width:100%;height:100%;
   object-fit:cover;
   display:block;
-  filter:grayscale(100%) contrast(1.1); /* brutalist B/W treatment */
+  /* Full color — no grayscale */
+  filter:none;
 }
-.photo-frame img:hover{filter:none;} /* color on hover = the inversion */
 .photo-placeholder{
   position:absolute;inset:0;
   display:flex;flex-direction:column;
@@ -117,16 +129,20 @@ nav{
 }
 .photo-placeholder .initials{
   font-family:var(--font-head);font-size:96px;line-height:1;
-  color:var(--black);
+  color:#0000FF;
 }
 .photo-caption{
-  border:5px solid var(--black);border-top:none;
-  background:var(--black);color:var(--white);
+  border-left:5px solid #0000FF;
+  border-right:5px solid #FF6B00;
+  border-bottom:5px solid #FF6B00;
+  border-top:none;
+  background:#0000FF;color:#FFFFFF;
   font-family:var(--font-mono);font-size:12px;
   text-transform:uppercase;letter-spacing:1px;
   padding:6px 12px;
   width:300px;
 }
+
 .hero .role{
   display:inline-block;
   background:var(--black);color:var(--white);
@@ -144,7 +160,6 @@ nav{
   text-transform:uppercase;
 }
 
-/* ---------- BUTTONS ---------- */
 .btn{
   display:inline-block;cursor:pointer;
   font-family:var(--font-body);font-weight:600;
@@ -163,7 +178,6 @@ nav{
 .btn-lg{padding:16px 40px;font-size:18px;min-height:56px;}
 .btn-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;}
 
-/* ---------- SECTIONS ---------- */
 section{padding:var(--sp-7) 0;border-bottom:5px solid var(--black);}
 .section-tag{
   font-family:var(--font-mono);font-size:13px;
@@ -173,12 +187,10 @@ section{padding:var(--sp-7) 0;border-bottom:5px solid var(--black);}
 .section-tag::before{content:"// ";}
 section h2{margin-bottom:var(--sp-5);}
 
-/* inverted section */
 .inverted{background:var(--black);color:var(--white);}
 .inverted a{color:var(--white);}
 .inverted a:hover{background:var(--white);color:var(--black);}
 
-/* ---------- ABOUT ---------- */
 .about-grid{display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-6);align-items:start;}
 .about-grid p{margin-bottom:var(--sp-3);}
 .fact-block{border:3px solid var(--black);}
@@ -189,7 +201,6 @@ section h2{margin-bottom:var(--sp-5);}
 .fact-block div:last-child{border-bottom:none;}
 .fact-block b{font-family:var(--font-head);font-weight:400;font-size:12px;text-transform:uppercase;display:block;letter-spacing:1px;}
 
-/* ---------- CHIPS ---------- */
 .chips{display:flex;flex-wrap:wrap;gap:var(--sp-2);}
 .chip{
   background:var(--white);color:var(--black);
@@ -203,7 +214,6 @@ section h2{margin-bottom:var(--sp-5);}
 .skill-group{margin-bottom:var(--sp-4);}
 .skill-group h4{font-family:var(--font-head);font-weight:400;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:var(--sp-2);}
 
-/* status chip */
 .status-chip{
   display:inline-block;background:var(--white);
   border:2px solid var(--success);color:var(--success);
@@ -211,7 +221,6 @@ section h2{margin-bottom:var(--sp-5);}
   padding:2px 10px;
 }
 
-/* ---------- PROJECT CARDS ---------- */
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:var(--sp-4);}
 .card{
   background:var(--white);color:var(--black);
@@ -240,7 +249,6 @@ section h2{margin-bottom:var(--sp-5);}
 .card .card-links a.live:hover{background:var(--white);color:var(--black);}
 #gh-status{font-family:var(--font-mono);font-size:13px;margin-bottom:var(--sp-4);text-transform:uppercase;}
 
-/* ---------- EXPERIENCE / EDUCATION LISTS ---------- */
 .xp-item{
   border-top:3px solid var(--white);
   padding:var(--sp-4) 0;
@@ -253,7 +261,6 @@ section h2{margin-bottom:var(--sp-5);}
 .xp-item ul{list-style:square;padding-left:20px;font-size:14px;}
 .xp-item li{margin-bottom:var(--sp-1);}
 
-/* ---------- CONTACT FORM ---------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6);}
 label{
   font-family:var(--font-head);font-weight:400;font-size:14px;
@@ -288,7 +295,6 @@ textarea{min-height:160px;resize:vertical;}
   text-transform:uppercase;display:block;letter-spacing:1px;margin-bottom:2px;
 }
 
-/* ---------- FOOTER ---------- */
 footer{
   background:var(--black);color:var(--white);
   padding:var(--sp-5) 0;
@@ -298,7 +304,6 @@ footer span{font-family:var(--font-mono);font-size:13px;text-transform:uppercase
 footer a{color:var(--white);}
 footer a:hover{background:var(--white);color:var(--black);}
 
-/* marquee strip */
 .strip{
   border-bottom:5px solid var(--black);
   overflow:hidden;white-space:nowrap;
@@ -321,7 +326,6 @@ footer a:hover{background:var(--white);color:var(--black);}
 </head>
 <body>
 
-<!-- ======================= NAV ======================= -->
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="#top">PANTH.PATEL</a>
@@ -335,7 +339,6 @@ footer a:hover{background:var(--white);color:var(--black);}
   </div>
 </nav>
 
-<!-- ======================= HERO ======================= -->
 <header class="hero" id="top">
   <div class="wrap">
     <div class="hero-grid">
@@ -355,10 +358,6 @@ footer a:hover{background:var(--white);color:var(--black);}
         </div>
       </div>
 
-      <!-- ===== PROFILE PHOTO =====
-           To use your own photo: put your image at portfolio/profile.jpg
-           (or change the src below). If the image is missing, the
-           "PP" placeholder block is shown automatically. -->
       <div>
         <div class="photo-frame">
           <div class="photo-placeholder">
@@ -381,7 +380,6 @@ footer a:hover{background:var(--white);color:var(--black);}
   </div>
 </header>
 
-<!-- ======================= STRIP ======================= -->
 <div class="strip" aria-hidden="true">
   <div class="strip-inner">
     PYTHON ★ LANGGRAPH ★ RAG ★ AGENTIC AI ★ LLMS ★ PYTORCH ★ FASTAPI ★ AWS ★ DOCKER ★ MLFLOW ★ HUGGINGFACE ★ MCP ★ A2A ★&nbsp;
@@ -389,7 +387,6 @@ footer a:hover{background:var(--white);color:var(--black);}
   </div>
 </div>
 
-<!-- ======================= ABOUT ======================= -->
 <section id="about">
   <div class="wrap">
     <div class="section-tag">01 — About</div>
@@ -416,15 +413,15 @@ footer a:hover{background:var(--white);color:var(--black);}
         <div><b>Education</b>M.S. Artificial Intelligence<br>BTU Cottbus · 2024–Present</div>
         <div><b>Prior Degree</b>B.E. Computer Science<br>VTU Bangalore · 2018–2023</div>
         <div><b>Location</b>Cottbus, Germany</div>
-       <div>
-  <b>Email</b>
-  <a href="mailto:panthcb@gmail.com">panthcb@gmail.com</a>
-</div>
+        <div>
+          <b>Email</b>
+          <a href="mailto:panthcb@gmail.com">panthcb@gmail.com</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ======================= SKILLS ======================= -->
 <section id="skills">
   <div class="wrap">
     <div class="section-tag">02 — Skills</div>
@@ -470,20 +467,18 @@ footer a:hover{background:var(--white);color:var(--black);}
   </div>
 </section>
 
-<!-- ======================= PROJECTS ======================= -->
 <section id="projects">
   <div class="wrap">
     <div class="section-tag">03 — Projects</div>
     <h2>Built &amp; Shipped</h2>
     <div id="gh-status">[ SOURCE: GITHUB.COM/PANTH19 ]</div>
-    <div class="proj-grid" id="proj-grid"><!-- populated by JS --></div>
+    <div class="proj-grid" id="proj-grid"></div>
     <div style="margin-top:40px;">
       <a class="btn btn-secondary btn-md" href="https://github.com/Panth19?tab=repositories" target="_blank" rel="noopener">All Repositories →</a>
     </div>
   </div>
 </section>
 
-<!-- ======================= EXPERIENCE (INVERTED) ======================= -->
 <section id="experience" class="inverted">
   <div class="wrap">
     <div class="section-tag">04 — Experience</div>
@@ -523,7 +518,6 @@ footer a:hover{background:var(--white);color:var(--black);}
   </div>
 </section>
 
-<!-- ======================= CONTACT ======================= -->
 <section id="contact">
   <div class="wrap">
     <div class="section-tag">05 — Contact</div>
@@ -550,9 +544,9 @@ footer a:hover{background:var(--white);color:var(--black);}
       </div>
       <div class="contact-direct">
         <div>
-  <b>Email</b>
-  <a href="mailto:panthcb@gmail.com">panthcb@gmail.com</a>
-</div>
+          <b>Email</b>
+          <a href="mailto:panthcb@gmail.com">panthcb@gmail.com</a>
+        </div>
         <div><b>GitHub</b><a href="https://github.com/Panth19" target="_blank" rel="noopener">github.com/Panth19</a></div>
         <div><b>LinkedIn</b><a href="https://linkedin.com/in/panthpatel1322" target="_blank" rel="noopener">linkedin.com/in/panthpatel1322</a></div>
         <div><b>Location</b>Cottbus, Germany — open to relocation within DE/EU</div>
@@ -565,7 +559,6 @@ footer a:hover{background:var(--white);color:var(--black);}
   </div>
 </section>
 
-<!-- ======================= FOOTER ======================= -->
 <footer>
   <div class="wrap">
     <span>© 2026 PANTH PATEL</span>
@@ -574,10 +567,7 @@ footer a:hover{background:var(--white);color:var(--black);}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* =====================================================
-   PROJECTS — live fetch from GitHub API, embedded fallback
-   ===================================================== */
+<script>
 const FALLBACK_REPOS = [
   {
     name: "RAG-Based-Generative-AI-Workflow-Orchestrator",
@@ -668,20 +658,8 @@ fetch('https://api.github.com/users/Panth19/repos?sort=updated&per_page=100')
     const own = repos.filter(r => !r.fork && r.name !== 'Portfolio');
     if (own.length) renderRepos(own, '[ SOURCE: LIVE — GITHUB.COM/PANTH19 ]');
   })
-  .catch(() => {/* keep fallback */});
+  .catch(() => {});
 
-/* =====================================================
-   CONTACT FORM — delivers email to your inbox via
-   FormSubmit (https://formsubmit.co — free, no signup).
-   HOW IT WORKS:
-   1. The FIRST time someone submits the form, FormSubmit
-      sends an activation email to panthcb@gmail.com.
-   2. Open that email and click "Activate".
-   3. From then on, every submission lands in your inbox,
-      with the visitor's email set as Reply-To.
-   FALLBACK: if the request fails (offline / blocked),
-   it opens the visitor's mail client via mailto instead.
-   ===================================================== */
 const CONTACT_EMAIL = 'panthcb@gmail.com';
 
 document.getElementById('contact-form').addEventListener('submit', function(e){
@@ -704,7 +682,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
       name: name,
-      email: email,            // becomes Reply-To in your inbox
+      email: email,
       _replyto: email,
       _subject: '[PORTFOLIO] ' + subject,
       message: message,
@@ -722,7 +700,6 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
     }
   })
   .catch(() => {
-    // Fallback: open the visitor's email client instead
     note.className = 'error';
     note.textContent = '! DIRECT SEND FAILED \u2014 OPENING YOUR EMAIL APP INSTEAD.';
     const body = message + '\n\n---\nFrom: ' + name + '\nReply-to: ' + email;
@@ -736,5 +713,5 @@ document.getElementById('contact-form').addEventListener('submit', function(e){
   });
 });
 </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0a864fe5a93cf96',t:'MTc4MTI2MjQ3Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
