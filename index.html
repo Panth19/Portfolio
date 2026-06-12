@@ -1,13 +1,735 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panth Patel · AI Engineer & Developer</title>
-    <meta name="description" content="Portfolio of Panth Patel — M.Sc. Artificial Intelligence student and software engineer. Explore my GitHub projects and get in touch." />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PANTH PATEL — AI ENGINEER</title>
+<meta name="description" content="Panth Patel — M.S. Artificial Intelligence student at BTU Cottbus. Building agentic AI, RAG systems, and ML pipelines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RAWBLOCK DESIGN SYSTEM — brutalist, zero radius, no shadows
+   ============================================================ */
+:root{
+  --black:#000000;
+  --white:#FFFFFF;
+  --blue:#0000FF;
+  --success:#008000;
+  --warning:#FFA500;
+  --error:#FF0000;
+  --sunken:#F0F0F0;
+  --sp-1:4px; --sp-2:8px; --sp-3:16px; --sp-4:24px;
+  --sp-5:40px; --sp-6:64px; --sp-7:80px; --sp-8:120px;
+  --font-head:'Archivo Black', Arial Black, sans-serif;
+  --font-body:'Work Sans', Helvetica, Arial, sans-serif;
+  --font-mono:'Space Mono', 'Courier New', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0 !important;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--white);
+  color:var(--black);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+}
+::selection{background:var(--black);color:var(--white);}
+
+h1{font-family:var(--font-head);font-size:64px;font-weight:400;line-height:1.0;text-transform:uppercase;}
+h2{font-family:var(--font-head);font-size:48px;font-weight:400;line-height:1.05;text-transform:uppercase;}
+h3{font-family:var(--font-head);font-size:32px;font-weight:400;line-height:1.1;text-transform:uppercase;}
+h4{font-family:var(--font-body);font-size:22px;font-weight:600;line-height:1.2;}
+.mono{font-family:var(--font-mono);font-size:15px;line-height:1.5;}
+.small{font-size:14px;line-height:1.5;}
+.tiny{font-size:12px;line-height:1.4;}
+
+a{color:var(--blue);text-decoration:underline;}
+a:hover{background:var(--blue);color:var(--white);}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--sp-4);}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--white);
+  border-bottom:5px solid var(--black);
+}
+.nav-inner{
+  display:flex;justify-content:space-between;align-items:stretch;
+  max-width:1180px;margin:0 auto;
+}
+.nav-logo{
+  font-family:var(--font-head);font-size:20px;text-transform:uppercase;
+  padding:14px var(--sp-4);
+  border-right:3px solid var(--black);
+  background:var(--black);color:var(--white);
+  text-decoration:none;letter-spacing:2px;
+  display:flex;align-items:center;
+}
+.nav-logo:hover{background:var(--white);color:var(--black);}
+.nav-links{display:flex;}
+.nav-links a{
+  font-family:var(--font-body);font-weight:600;font-size:13px;
+  text-transform:uppercase;letter-spacing:2px;
+  color:var(--black);text-decoration:none;
+  padding:14px var(--sp-3);
+  border-left:3px solid var(--black);
+  display:flex;align-items:center;
+}
+.nav-links a:hover{background:var(--black);color:var(--white);}
+
+/* ---------- HERO ---------- */
+.hero{
+  border-bottom:5px solid var(--black);
+  padding:var(--sp-7) 0 var(--sp-6);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 300px;
+  gap:var(--sp-6);align-items:start;
+}
+.hero h1{font-size:clamp(48px,9vw,110px);margin-bottom:var(--sp-3);}
+
+/* ---------- PROFILE PHOTO ---------- */
+.photo-frame{
+  border:5px solid var(--black);
+  background:var(--sunken);
+  width:300px;height:340px;
+  position:relative;
+  overflow:hidden;
+}
+.photo-frame img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(100%) contrast(1.1); /* brutalist B/W treatment */
+}
+.photo-frame img:hover{filter:none;} /* color on hover = the inversion */
+.photo-placeholder{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:var(--sp-2);
+  font-family:var(--font-mono);font-size:12px;
+  text-transform:uppercase;text-align:center;
+  padding:var(--sp-3);
+}
+.photo-placeholder .initials{
+  font-family:var(--font-head);font-size:96px;line-height:1;
+  color:var(--black);
+}
+.photo-caption{
+  border:5px solid var(--black);border-top:none;
+  background:var(--black);color:var(--white);
+  font-family:var(--font-mono);font-size:12px;
+  text-transform:uppercase;letter-spacing:1px;
+  padding:6px 12px;
+  width:300px;
+}
+.hero .role{
+  display:inline-block;
+  background:var(--black);color:var(--white);
+  font-family:var(--font-mono);font-size:15px;
+  padding:8px 16px;
+  margin-bottom:var(--sp-4);
+  text-transform:uppercase;letter-spacing:2px;
+}
+.hero p.lede{max-width:680px;font-size:18px;margin-bottom:var(--sp-5);}
+.hero-meta{
+  font-family:var(--font-mono);font-size:13px;
+  border-top:3px solid var(--black);
+  padding-top:var(--sp-3);
+  display:flex;gap:var(--sp-5);flex-wrap:wrap;
+  text-transform:uppercase;
+}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-block;cursor:pointer;
+  font-family:var(--font-body);font-weight:600;
+  text-transform:uppercase;letter-spacing:2px;
+  text-decoration:none;text-align:center;
+  border:3px solid var(--black);
+}
+.btn-primary{background:var(--black);color:var(--white);}
+.btn-primary:hover{background:var(--white);color:var(--black);}
+.btn-primary:active{background:var(--black);color:var(--white);border-width:5px;}
+.btn-secondary{background:var(--white);color:var(--black);}
+.btn-secondary:hover{background:var(--black);color:var(--white);}
+.btn-ghost{background:transparent;color:var(--black);border:none;text-decoration:underline;}
+.btn-ghost:hover{color:var(--blue);background:transparent;}
+.btn-md{padding:10px 24px;font-size:14px;min-height:44px;}
+.btn-lg{padding:16px 40px;font-size:18px;min-height:56px;}
+.btn-row{display:flex;gap:var(--sp-3);flex-wrap:wrap;}
+
+/* ---------- SECTIONS ---------- */
+section{padding:var(--sp-7) 0;border-bottom:5px solid var(--black);}
+.section-tag{
+  font-family:var(--font-mono);font-size:13px;
+  text-transform:uppercase;letter-spacing:2px;
+  margin-bottom:var(--sp-2);
+}
+.section-tag::before{content:"// ";}
+section h2{margin-bottom:var(--sp-5);}
+
+/* inverted section */
+.inverted{background:var(--black);color:var(--white);}
+.inverted a{color:var(--white);}
+.inverted a:hover{background:var(--white);color:var(--black);}
+
+/* ---------- ABOUT ---------- */
+.about-grid{display:grid;grid-template-columns:2fr 1fr;gap:var(--sp-6);align-items:start;}
+.about-grid p{margin-bottom:var(--sp-3);}
+.fact-block{border:3px solid var(--black);}
+.fact-block div{
+  padding:12px 16px;border-bottom:3px solid var(--black);
+  font-family:var(--font-mono);font-size:14px;
+}
+.fact-block div:last-child{border-bottom:none;}
+.fact-block b{font-family:var(--font-head);font-weight:400;font-size:12px;text-transform:uppercase;display:block;letter-spacing:1px;}
+
+/* ---------- CHIPS ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:var(--sp-2);}
+.chip{
+  background:var(--white);color:var(--black);
+  border:2px solid var(--black);
+  padding:4px 12px;
+  font-size:10px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px;
+  font-family:var(--font-body);
+}
+.chip:hover{background:var(--black);color:var(--white);}
+.skill-group{margin-bottom:var(--sp-4);}
+.skill-group h4{font-family:var(--font-head);font-weight:400;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:var(--sp-2);}
+
+/* status chip */
+.status-chip{
+  display:inline-block;background:var(--white);
+  border:2px solid var(--success);color:var(--success);
+  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;
+  padding:2px 10px;
+}
+
+/* ---------- PROJECT CARDS ---------- */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:var(--sp-4);}
+.card{
+  background:var(--white);color:var(--black);
+  border:3px solid var(--black);
+  padding:var(--sp-4);
+  display:flex;flex-direction:column;
+}
+.card.featured{border-width:5px;}
+.card:hover{outline:none;}
+.card .lang{
+  font-family:var(--font-mono);font-size:12px;text-transform:uppercase;
+  border-bottom:3px solid var(--black);
+  padding-bottom:var(--sp-2);margin-bottom:var(--sp-3);
+  display:flex;justify-content:space-between;
+}
+.card h3{font-size:22px;word-break:break-word;margin-bottom:var(--sp-3);}
+.card p{font-size:14px;line-height:1.5;flex:1;margin-bottom:var(--sp-3);}
+.card .card-links{display:flex;gap:var(--sp-2);flex-wrap:wrap;}
+.card .card-links a{
+  font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;
+  color:var(--black);text-decoration:none;
+  border:3px solid var(--black);padding:6px 16px;background:var(--white);
+}
+.card .card-links a:hover{background:var(--black);color:var(--white);}
+.card .card-links a.live{background:var(--black);color:var(--white);}
+.card .card-links a.live:hover{background:var(--white);color:var(--black);}
+#gh-status{font-family:var(--font-mono);font-size:13px;margin-bottom:var(--sp-4);text-transform:uppercase;}
+
+/* ---------- EXPERIENCE / EDUCATION LISTS ---------- */
+.xp-item{
+  border-top:3px solid var(--white);
+  padding:var(--sp-4) 0;
+  display:grid;grid-template-columns:200px 1fr;gap:var(--sp-4);
+}
+.inverted .xp-item{border-top:3px solid var(--white);}
+.xp-item:last-child{border-bottom:3px solid var(--white);}
+.xp-when{font-family:var(--font-mono);font-size:13px;text-transform:uppercase;}
+.xp-item h4{margin-bottom:var(--sp-1);}
+.xp-item ul{list-style:square;padding-left:20px;font-size:14px;}
+.xp-item li{margin-bottom:var(--sp-1);}
+
+/* ---------- CONTACT FORM ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6);}
+label{
+  font-family:var(--font-head);font-weight:400;font-size:14px;
+  text-transform:uppercase;display:block;margin-bottom:4px;letter-spacing:1px;
+}
+input,textarea{
+  width:100%;
+  background:var(--sunken);color:var(--black);
+  border:3px solid var(--black);
+  font-family:var(--font-mono);font-size:15px;line-height:1.5;
+  padding:10px 12px;
+  margin-bottom:var(--sp-3);
+}
+input:hover,textarea:hover{background:#E8E8E8;}
+input:focus,textarea:focus{outline:none;border-width:5px;padding:8px 10px;}
+textarea{min-height:160px;resize:vertical;}
+.helper{font-size:12px;margin-top:-12px;margin-bottom:var(--sp-3);color:#444;}
+#form-note{
+  font-family:var(--font-mono);font-size:13px;
+  border:3px solid var(--success);color:var(--success);
+  padding:8px 12px;margin-top:var(--sp-3);display:none;
+}
+#form-note.error{border-color:var(--error);color:var(--error);}
+.contact-direct div{
+  border:3px solid var(--black);
+  padding:var(--sp-3);
+  margin-bottom:var(--sp-3);
+  font-family:var(--font-mono);font-size:14px;
+}
+.contact-direct b{
+  font-family:var(--font-head);font-weight:400;font-size:13px;
+  text-transform:uppercase;display:block;letter-spacing:1px;margin-bottom:2px;
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  background:var(--black);color:var(--white);
+  padding:var(--sp-5) 0;
+}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--sp-3);}
+footer span{font-family:var(--font-mono);font-size:13px;text-transform:uppercase;}
+footer a{color:var(--white);}
+footer a:hover{background:var(--white);color:var(--black);}
+
+/* marquee strip */
+.strip{
+  border-bottom:5px solid var(--black);
+  overflow:hidden;white-space:nowrap;
+  font-family:var(--font-head);font-size:20px;text-transform:uppercase;
+  padding:10px 0;letter-spacing:2px;
+  background:var(--black);color:var(--white);
+}
+.strip-inner{display:inline-block;animation:scroll 30s linear infinite;}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+@media(max-width:860px){
+  h1{font-size:44px;}h2{font-size:34px;}h3{font-size:26px;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .hero-grid{grid-template-columns:1fr;}
+  .photo-frame,.photo-caption{width:100%;max-width:300px;}
+  .xp-item{grid-template-columns:1fr;gap:var(--sp-2);}
+  .nav-links a{padding:14px 10px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= NAV ======================= -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top">PANTH.PATEL</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================= HERO ======================= -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="role">AI ENGINEER / M.S. ARTIFICIAL INTELLIGENCE</span>
+        <h1>Panth<br>Patel</h1>
+        <p class="lede">
+          I build end-to-end AI systems — <strong>agentic AI</strong>, <strong>RAG pipelines</strong>,
+          <strong>LLM evaluation</strong>, and <strong>multimodal interfaces</strong>.
+          Master's student in Artificial Intelligence at BTU Cottbus, Germany.
+          Currently open to internships in automotive AI, GenAI applications, and ML engineering.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-lg" href="#projects">View Projects</a>
+          <a class="btn btn-secondary btn-lg" href="#contact">Contact Me</a>
+          <a class="btn btn-ghost btn-md" href="https://github.com/Panth19" target="_blank" rel="noopener">github.com/Panth19 →</a>
+        </div>
+      </div>
+
+      <!-- ===== PROFILE PHOTO =====
+           To use your own photo: put your image at portfolio/profile.jpg
+           (or change the src below). If the image is missing, the
+           "PP" placeholder block is shown automatically. -->
+      <div>
+        <div class="photo-frame">
+          <div class="photo-placeholder">
+            <span class="initials">PP</span>
+            <span>[ ADD PROFILE.JPG<br>TO THIS FOLDER ]</span>
+          </div>
+          <img src="profile.jpg" alt="Panth Patel — profile photo"
+               style="position:relative;z-index:1;"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="photo-caption">FIG. 01 — PANTH PATEL, COTTBUS</div>
+      </div>
+    </div>
+
+    <div class="hero-meta" style="margin-top:64px;">
+      <span>📍 Cottbus, Germany</span>
+      <span><span class="status-chip">Open to internships</span></span>
+      <span>EN: C1 / DE: A2</span>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= STRIP ======================= -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-inner">
+    PYTHON ★ LANGGRAPH ★ RAG ★ AGENTIC AI ★ LLMS ★ PYTORCH ★ FASTAPI ★ AWS ★ DOCKER ★ MLFLOW ★ HUGGINGFACE ★ MCP ★ A2A ★&nbsp;
+    PYTHON ★ LANGGRAPH ★ RAG ★ AGENTIC AI ★ LLMS ★ PYTORCH ★ FASTAPI ★ AWS ★ DOCKER ★ MLFLOW ★ HUGGINGFACE ★ MCP ★ A2A ★&nbsp;
+  </div>
+</div>
+
+<!-- ======================= ABOUT ======================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-tag">01 — About</div>
+    <h2>Who I Am</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I'm a Master's student in <strong>Artificial Intelligence</strong> at Brandenburgische
+          Technische Universität (BTU) Cottbus with hands-on experience building end-to-end
+          AI systems using Python, LLMs, Generative AI, Agentic AI, RAG, and multimodal pipelines.
+        </p>
+        <p>
+          My work spans the full stack of modern ML engineering: evaluation &amp; benchmarking,
+          FastAPI backends, AWS &amp; Docker deployment, MLflow experiment tracking, HuggingFace
+          and PyTorch model work, and agent orchestration with LangGraph, MCP, and A2A patterns.
+        </p>
+        <p>
+          I'm interested in internships across <strong>automotive AI</strong>,
+          <strong>agent-based systems</strong>, <strong>GenAI applications</strong>,
+          <strong>RAG</strong>, and <strong>ML engineering</strong>.
+        </p>
+      </div>
+      <div class="fact-block">
+        <div><b>Education</b>M.S. Artificial Intelligence<br>BTU Cottbus · 2024–Present</div>
+        <div><b>Prior Degree</b>B.E. Computer Science<br>VTU Bangalore · 2018–2023</div>
+        <div><b>Location</b>Cottbus, Germany</div>
+        <div><b>Email</b><a href="/cdn-cgi/l/email-protection#d8a8b9b6acb0bbba98bfb5b9b1b4f6bbb7b5"><span class="__cf_email__" data-cfemail="7404151a001c1716341319151d185a171b19">[email&#160;protected]</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SKILLS ======================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-tag">02 — Skills</div>
+    <h2>Technical Arsenal</h2>
+
+    <div class="skill-group">
+      <h4>Programming</h4>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">SQL</span>
+        <span class="chip">Bash</span><span class="chip">Git</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Frameworks / Libraries</h4>
+      <div class="chips">
+        <span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Scikit-learn</span>
+        <span class="chip">Transformers</span><span class="chip">HuggingFace</span><span class="chip">LangGraph</span>
+        <span class="chip">OpenCV</span><span class="chip">Whisper</span><span class="chip">FastAPI</span>
+        <span class="chip">React</span><span class="chip">Next.js</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>GenAI / ML</h4>
+      <div class="chips">
+        <span class="chip">LLMs</span><span class="chip">Generative AI</span><span class="chip">Agentic AI</span>
+        <span class="chip">MCP</span><span class="chip">A2A</span><span class="chip">RAG</span>
+        <span class="chip">Embeddings</span><span class="chip">Vector DBs</span><span class="chip">Fine-Tuning</span>
+        <span class="chip">Prompt Engineering</span><span class="chip">Evaluation</span><span class="chip">Benchmarking</span>
+        <span class="chip">MLOps</span><span class="chip">CI/CD</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Tools / Platforms</h4>
+      <div class="chips">
+        <span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">MLflow</span>
+        <span class="chip">Pinecone</span><span class="chip">PostgreSQL</span><span class="chip">Linux</span>
+        <span class="chip">ONNX</span><span class="chip">NVIDIA Jetson</span><span class="chip">Jupyter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROJECTS ======================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-tag">03 — Projects</div>
+    <h2>Built &amp; Shipped</h2>
+    <div id="gh-status">[ SOURCE: GITHUB.COM/PANTH19 ]</div>
+    <div class="proj-grid" id="proj-grid"><!-- populated by JS --></div>
+    <div style="margin-top:40px;">
+      <a class="btn btn-secondary btn-md" href="https://github.com/Panth19?tab=repositories" target="_blank" rel="noopener">All Repositories →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= EXPERIENCE (INVERTED) ======================= -->
+<section id="experience" class="inverted">
+  <div class="wrap">
+    <div class="section-tag">04 — Experience</div>
+    <h2>Track Record</h2>
+
+    <div class="xp-item">
+      <div class="xp-when">Feb 2023 — Aug 2023</div>
+      <div>
+        <h4>Data Analyst Intern — YBI Foundation (Remote)</h4>
+        <ul>
+          <li>Analyzed 50k+ rows of structured data with Python &amp; Pandas to identify usage patterns and improve data quality.</li>
+          <li>Automated preprocessing &amp; cleaning workflows, cutting repetitive manual analysis effort by ~30%.</li>
+          <li>Built visual analytics reports with Matplotlib &amp; Seaborn to communicate trends and anomalies to stakeholders.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-when">Apr 2024 — Present</div>
+      <div>
+        <h4>M.S. in Artificial Intelligence — BTU Cottbus, Germany</h4>
+        <ul>
+          <li>Focus: LLMs, agentic systems, multimodal AI, evaluation &amp; benchmarking, MLOps.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-when">Jul 2018 — Jun 2023</div>
+      <div>
+        <h4>B.E. in Computer Science &amp; Engineering — VTU Bangalore, India</h4>
+        <ul>
+          <li>Foundation in algorithms, software engineering, and data systems.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CONTACT ======================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-tag">05 — Contact</div>
+    <h2>Reach Me</h2>
+    <div class="contact-grid">
+      <div>
+        <form id="contact-form">
+          <label for="cf-name">Your Name</label>
+          <input type="text" id="cf-name" name="name" required placeholder="JANE DOE">
+
+          <label for="cf-email">Your Email</label>
+          <input type="email" id="cf-email" name="email" required placeholder="JANE@EXAMPLE.COM">
+          <div class="helper">So I can reply to you directly.</div>
+
+          <label for="cf-subject">Subject</label>
+          <input type="text" id="cf-subject" name="subject" required placeholder="INTERNSHIP / PROJECT / HELLO">
+
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" required placeholder="WRITE YOUR MESSAGE..."></textarea>
+
+          <button type="submit" class="btn btn-primary btn-lg">Send Email →</button>
+          <div id="form-note"></div>
+        </form>
+      </div>
+      <div class="contact-direct">
+        <div><b>Email</b><a href="/cdn-cgi/l/email-protection#a9d9c8c7ddc1cacbe9cec4c8c0c587cac6c4"><span class="__cf_email__" data-cfemail="ff8f9e918b979c9dbf98929e9693d19c9092">[email&#160;protected]</span></a></div>
+        <div><b>GitHub</b><a href="https://github.com/Panth19" target="_blank" rel="noopener">github.com/Panth19</a></div>
+        <div><b>LinkedIn</b><a href="https://linkedin.com/in/panthpatel1322" target="_blank" rel="noopener">linkedin.com/in/panthpatel1322</a></div>
+        <div><b>Location</b>Cottbus, Germany — open to relocation within DE/EU</div>
+        <div style="background:#000;color:#fff;border:3px solid #000;">
+          <b style="color:#fff;">Status</b>
+          ACTIVELY SEEKING AI / ML INTERNSHIPS — AUTOMOTIVE AI · AGENTIC SYSTEMS · GENAI · RAG · ML ENGINEERING
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="wrap">
+    <span>© 2026 PANTH PATEL</span>
+    <span>BUILT WITH RAWBLOCK — NO SHADOWS. NO CORNERS. NO MERCY.</span>
+    <span><a href="#top">BACK TO TOP ↑</a></span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* =====================================================
+   PROJECTS — live fetch from GitHub API, embedded fallback
+   ===================================================== */
+const FALLBACK_REPOS = [
+  {
+    name: "RAG-Based-Generative-AI-Workflow-Orchestrator",
+    description: "RAG application processing 100+ unstructured documents into embeddings + vector search for domain-specific QA. Agentic workflows with LangGraph & tool calling, plus a full evaluation/benchmarking pipeline. Python · TypeScript · React · Next.js · Pinecone · FastAPI · Docker · AWS.",
+    language: "TypeScript",
+    html_url: "https://github.com/Panth19/RAG-Based-Generative-AI-Workflow-Orchestrator",
+    homepage: null, featured: true
+  },
+  {
+    name: "automotive-agentic-ai-system",
+    description: "Multimodal agentic AI prototype for in-car assistance: speech, vision & text inputs for context-aware dialogue and simulated vehicle control. Agent orchestration via LangGraph, MCP & A2A; FastAPI backend with streaming + safety guardrails.",
+    language: "Python",
+    html_url: "https://github.com/Panth19/automotive-agentic-ai-system",
+    homepage: null, featured: true
+  },
+  {
+    name: "ai-internship-matcher",
+    description: "AI-powered tool that matches candidate profiles to internship opportunities. Live demo deployed on Vercel.",
+    language: "TypeScript",
+    html_url: "https://github.com/Panth19/ai-internship-matcher",
+    homepage: "https://ai-internship-matcher-phi.vercel.app"
+  },
+  {
+    name: "MCP-Shield",
+    description: "Security layer for Model Context Protocol (MCP) tooling — guarding agent ↔ tool interactions. Live demo on Netlify.",
+    language: "TypeScript",
+    html_url: "https://github.com/Panth19/MCP-Shield",
+    homepage: "https://mcp-shield.netlify.app/"
+  },
+  {
+    name: "ai-study-buddy",
+    description: "GenAI study companion for learners — question answering and study support powered by LLMs. Live on Vercel.",
+    language: "TypeScript",
+    html_url: "https://github.com/Panth19/ai-study-buddy",
+    homepage: "https://ai-study-buddy-drab.vercel.app"
+  },
+  {
+    name: "DocuMindAI",
+    description: "Document intelligence app — upload documents and chat with them using RAG + LLMs. Live on Vercel.",
+    language: "TypeScript",
+    html_url: "https://github.com/Panth19/DocuMindAI",
+    homepage: "https://docu-mind-ai-steel.vercel.app"
+  },
+  {
+    name: "LLM Evaluation & Edge MLOps Framework",
+    description: "Fine-tuned & evaluated open-source LLMs for automotive NLP. Benchmarking suite for reasoning quality, hallucination & trustworthiness. MLflow tracking + ONNX quantization for edge deployment on NVIDIA Jetson.",
+    language: "Python",
+    html_url: "https://github.com/Panth19",
+    homepage: null
+  }
+];
+
+const FEATURED = new Set([
+  "RAG-Based-Generative-AI-Workflow-Orchestrator",
+  "automotive-agentic-ai-system"
+]);
+
+function renderRepos(repos, sourceLabel){
+  const grid = document.getElementById('proj-grid');
+  const status = document.getElementById('gh-status');
+  status.textContent = sourceLabel;
+  grid.innerHTML = '';
+  repos.forEach(r => {
+    if (r.fork) return;
+    const fb = FALLBACK_REPOS.find(f => f.name === r.name);
+    const desc = r.description || (fb && fb.description) || 'See repository for details.';
+    const featured = FEATURED.has(r.name);
+    const card = document.createElement('article');
+    card.className = 'card' + (featured ? ' featured' : '');
+    card.innerHTML =
+      '<div class="lang"><span>' + (r.language || 'CODE') + '</span>' +
+      (featured ? '<span>★ FEATURED</span>' : '') + '</div>' +
+      '<h3>' + r.name.replace(/-/g,' ') + '</h3>' +
+      '<p>' + desc + '</p>' +
+      '<div class="card-links">' +
+        '<a href="' + r.html_url + '" target="_blank" rel="noopener">Code</a>' +
+        (r.homepage ? '<a class="live" href="' + r.homepage + '" target="_blank" rel="noopener">Live Demo</a>' : '') +
+      '</div>';
+    grid.appendChild(card);
+  });
+}
+
+renderRepos(FALLBACK_REPOS, '[ SOURCE: EMBEDDED SNAPSHOT — 2026-06 ]');
+
+fetch('https://api.github.com/users/Panth19/repos?sort=updated&per_page=100')
+  .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+  .then(repos => {
+    const own = repos.filter(r => !r.fork && r.name !== 'Portfolio');
+    if (own.length) renderRepos(own, '[ SOURCE: LIVE — GITHUB.COM/PANTH19 ]');
+  })
+  .catch(() => {/* keep fallback */});
+
+/* =====================================================
+   CONTACT FORM — delivers email to your inbox via
+   FormSubmit (https://formsubmit.co — free, no signup).
+   HOW IT WORKS:
+   1. The FIRST time someone submits the form, FormSubmit
+      sends an activation email to panthcb@gmail.com.
+   2. Open that email and click "Activate".
+   3. From then on, every submission lands in your inbox,
+      with the visitor's email set as Reply-To.
+   FALLBACK: if the request fails (offline / blocked),
+   it opens the visitor's mail client via mailto instead.
+   ===================================================== */
+const CONTACT_EMAIL = 'panthcb@gmail.com';
+
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+  const note    = document.getElementById('form-note');
+  const btn     = this.querySelector('button[type=submit]');
+
+  btn.disabled = true;
+  btn.textContent = 'SENDING...';
+  note.className = '';
+  note.style.display = 'block';
+  note.textContent = '> TRANSMITTING...';
+
+  fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      email: email,            // becomes Reply-To in your inbox
+      _replyto: email,
+      _subject: '[PORTFOLIO] ' + subject,
+      message: message,
+      _template: 'box',
+      _captcha: 'false'
+    })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success === 'true' || data.success === true) {
+      note.textContent = '\u2713 MESSAGE SENT. I WILL GET BACK TO YOU SOON.';
+      document.getElementById('contact-form').reset();
+    } else {
+      throw new Error('rejected');
+    }
+  })
+  .catch(() => {
+    // Fallback: open the visitor's email client instead
+    note.className = 'error';
+    note.textContent = '! DIRECT SEND FAILED \u2014 OPENING YOUR EMAIL APP INSTEAD.';
+    const body = message + '\n\n---\nFrom: ' + name + '\nReply-to: ' + email;
+    window.location.href = 'mailto:' + CONTACT_EMAIL
+      + '?subject=' + encodeURIComponent('[PORTFOLIO] ' + subject)
+      + '&body=' + encodeURIComponent(body);
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = 'SEND EMAIL \u2192';
+  });
+});
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0a864fe5a93cf96',t:'MTc4MTI2MjQ3Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
